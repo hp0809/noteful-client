@@ -1,6 +1,6 @@
 
 export const findFolder = (folders=[], folderId) =>
-  folders.find(folders => folders.id === folderId)
+  folders.find(folders => parseInt(folders.id) === parseInt(folderId))
 
 export const findNote = (notes=[], noteId) => {
      return notes.find( (note) => {
