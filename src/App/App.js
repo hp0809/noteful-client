@@ -30,6 +30,7 @@ class App extends Component {
             })
             .then(([notes, folders]) => {
                 this.setState({notes, folders});
+                
             })
             .catch(error => {
                 console.error({error});
@@ -37,15 +38,16 @@ class App extends Component {
     }
 
     handleDeleteNote = noteId => {
+        console.log()
         this.setState({
-            notes: this.state.notes.filter(notes => notes.id !== noteId)
+            notes: this.state.notes.filter(note => note.id !== noteId)
         });
-    };
+    }
 
     renderNavRoutes() {
         return (
             <>
-                {['/', '/folders/:folders.id'].map(path => (
+                {['/', '/folders/:folderId'].map(path => (
                     <Route
                         exact
                         key={path}
@@ -53,7 +55,7 @@ class App extends Component {
                         component={NoteListNav}
                     />
                 ))}
-                <Route path="/note/:note.id" component={NotePageNav} />
+                <Route path="/:noteId" component={NotePageNav} />
                 <Route path="/add-folder" component={NotePageNav} />
                 <Route path="/add-note" component={NotePageNav} />
             </>
@@ -63,7 +65,7 @@ class App extends Component {
     renderMainRoutes() {
         return (
             <>
-                {['/', '/folders/:folders.id'].map(path => (
+                {['/', '/folders/:folderId'].map(path => (
                     <Route
                         exact
                         key={path}
@@ -71,7 +73,7 @@ class App extends Component {
                         component={NoteListMain}
                     />
                 ))}
-                <Route path="/notes/:note.id" component={NotePageMain} />
+                <Route path="/:noteId" component={NotePageMain} />
             </>
         );
     }

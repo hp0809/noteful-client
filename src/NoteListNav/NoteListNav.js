@@ -9,8 +9,12 @@ import './NoteListNav.css'
 export default class NoteListNav extends React.Component {
   static contextType = ApiContext;
 
+
   render() {
     const { folders=[], notes=[] } = this.context
+    console.log(notes)
+    console.log(folders.id)
+    
     return (
       <div className='NoteListNav'>
         <ul className='NoteListNav__list'>
