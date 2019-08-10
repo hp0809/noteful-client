@@ -14,18 +14,22 @@ export default class NotePageMain extends React.Component {
 
   handleDeleteNote = noteId => {
     this.props.history.push(`/`)
+    console.log('handleDeleteNote ran')
   }
 
   render() {
     const { notes=[] } = this.context
     const { noteId } = this.props.match.params
+    
     const note = findNote(notes, noteId) || { content: '' }
+    console.log(notes)
+    
     return (
       <section className='NotePageMain'>
         <Note
           id={note.id}
           name={note.name}
-          modified={note.modified}
+          date_modified={note.modified}
           onDeleteNote={this.handleDeleteNote}
         />
         <div className='NotePageMain__content'>

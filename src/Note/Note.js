@@ -14,9 +14,9 @@ export default class Note extends React.Component {
 
   handleClickDelete = e => {
     e.preventDefault()
-    const noteId = this.props.id
+    const id = this.props.id
 
-    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+    fetch(`${config.API_ENDPOINT}/notes/${id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -28,8 +28,13 @@ export default class Note extends React.Component {
         return res.json()
       })
       .then(() => {
+<<<<<<< HEAD
         this.context.deleteNote(noteId)
         this.props.onDeleteNote(noteId)
+=======
+        this.context.deleteNote(id)
+        this.props.onDeleteNote(id)
+>>>>>>> c2bf1feb9e772c9cd954bc0a453cd505bbac833e
       })
       .catch(error => {
         console.error({ error })
@@ -37,13 +42,15 @@ export default class Note extends React.Component {
   }
 
   render() {
-    const { name, id, modified } = this.props
+    const { name, id, date_modified } = this.props
+    
     return (
       <div className='Note'>
         <h2 className='Note__title'>
-          <Link to={`/note/${id}`}>
+          <Link to={`/notes/${id}`}>
             {name}
           </Link>
+          
         </h2>
         <button
           className='Note__delete'
@@ -59,7 +66,7 @@ export default class Note extends React.Component {
             Modified
             {' '}
             <span className='Date'>
-              {format(modified, 'Do MMM YYYY')}
+              {format(date_modified, 'Do MMM YYYY')}
             </span>
           </div>
         </div>

@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import NotefulForm from '../NotefulForm/NotefulForm'
-import ApiContext from '../ApiContext'
-import config from '../config'
 import './AddNote.css'
 
 export default class AddNote extends Component {
   static defaultProps = {
-    history: {
-      push: () => { }
-    },
+    folders: [],
   }
+<<<<<<< HEAD
   static contextType = ApiContext;
 
   handleSubmit = e => {
@@ -41,29 +38,31 @@ export default class AddNote extends Component {
       })
   }
 
+=======
+>>>>>>> c2bf1feb9e772c9cd954bc0a453cd505bbac833e
   render() {
-    const { folders=[] } = this.context
+    const { folders } = this.props
     return (
       <section className='AddNote'>
         <h2>Create a note</h2>
-        <NotefulForm onSubmit={this.handleSubmit}>
+        <NotefulForm>
           <div className='field'>
             <label htmlFor='note-name-input'>
               Name
             </label>
-            <input type='text' id='note-name-input' name='note-name' />
+            <input type='text' id='note-name-input' />
           </div>
           <div className='field'>
             <label htmlFor='note-content-input'>
               Content
             </label>
-            <textarea id='note-content-input' name='note-content' />
+            <textarea id='note-content-input' />
           </div>
           <div className='field'>
             <label htmlFor='note-folder-select'>
               Folder
             </label>
-            <select id='note-folder-select' name='note-folder-id'>
+            <select id='note-folder-select'>
               <option value={null}>...</option>
               {folders.map(folder =>
                 <option key={folder.id} value={folder.id}>
