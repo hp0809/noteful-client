@@ -9,24 +9,21 @@ import './NoteListNav.css'
 export default class NoteListNav extends React.Component {
   static contextType = ApiContext;
 
-
   render() {
     const { folders=[], notes=[] } = this.context
-    console.log(notes)
-
     return (
       <div className='NoteListNav'>
         <ul className='NoteListNav__list'>
-          {folders.map(folders =>
-            <li key={folders.id}>
+          {folders.map(folder =>
+            <li key={folder.id}>
               <NavLink
                 className='NoteListNav__folder-link'
-                to={`/folders/${folders.id}`}
+                to={`/folder/${folder.id}`}
               >
                 <span className='NoteListNav__num-notes'>
-                  {countNotesForFolder(notes, folders.id)}
+                  {countNotesForFolder(notes, folder.id)}
                 </span>
-                {folders.name}
+                {folder.name}
               </NavLink>
             </li>
           )}

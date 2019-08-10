@@ -16,23 +16,18 @@ export default class NoteListMain extends React.Component {
   static contextType = ApiContext
 
   render() {
-    const { folderid } = this.props.match.params
+    const { folderId } = this.props.match.params
     const { notes=[] } = this.context
-<<<<<<< HEAD
-    const notesForFolder = getNotesForFolder(notes, folderid)
-=======
     const notesForFolder = getNotesForFolder(notes, folderId)
-    
->>>>>>> c2bf1feb9e772c9cd954bc0a453cd505bbac833e
     return (
       <section className='NoteListMain'>
         <ul>
-          {notesForFolder.map(notes =>
-            <li key={notes.id} >
+          {notesForFolder.map(note =>
+            <li key={note.id}>
               <Note
-                id={notes.id}
-                name={notes.name}
-                date_modified={notes.modified}
+                id={note.id}
+                name={note.name}
+                modified={note.modified}
               />
             </li>
           )}
