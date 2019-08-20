@@ -77,7 +77,7 @@ class App extends Component {
           />
         )}
         <Route
-          path='/notes/:noteId'
+          path='/note/:noteId'
           component={NotePageNav}
         />
         <Route
@@ -104,7 +104,7 @@ class App extends Component {
           />
         )}
         <Route
-          path='/notes/:noteId'
+          path='/note/:noteId'
           component={NotePageMain}
         />
         <Route
