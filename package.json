@@ -23,7 +23,6 @@
     "deploy": "now ./build",
     "postdeploy": "now alias -A ./build/now.json"
   },
-
   "eslintConfig": {
     "extends": "react-app"
   },

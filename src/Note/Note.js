@@ -7,31 +7,30 @@ import config from '../config'
 import './Note.css'
 
 export default class Note extends React.Component {
-  static defaultProps ={
-    onDeleteNote: () => {},
+  static defaultProps = {
+    onDeleteNote: () => {}
   }
   static contextType = ApiContext;
 
   handleClickDelete = e => {
     e.preventDefault()
     const noteId = this.props.id
-    console.log(this.props.id)
+
 
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
-      },
-    })
+      }
+    }) 
       .then(res => {
         if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
+          return res.json().then(e => Promise.reject(e))        
       })
       .then(() => {
         this.context.deleteNote(noteId)
-        // allow parent to perform extra behaviour
         this.props.onDeleteNote(noteId)
+        console.log(noteId)
       })
       .catch(error => {
         console.error({ error })
